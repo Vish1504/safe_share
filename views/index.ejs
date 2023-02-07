@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Sample</title>
+    </head>
+
+    <body>
+        <h1>Heyyoo</h1>
+        <% if(locals.fileLink!=null) {%>
+            <div style="margin-bottom: 1rem;"> Your file is at <a href="<%= locals.fileLink %>">
+                    <%= locals.fileLink %>
+                </a>
+            </div>
+            <%}%>
+                <form method="post" action="/upload" enctype="multipart/form-data">
+                    <div>
+                        <label for="file">Choose an image to upload:</label>
+                        <input type="file" id="file" name="file">
+                        <label for="password">Enter password</label>
+                        <input type="password" name="password" id="password">
+                    </div>
+                    <div>
+                        <button type="submit">Upload Image</button>
+                    </div>
+                </form>
+                </form>
+    </body>
+
+</html>
