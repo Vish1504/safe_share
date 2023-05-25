@@ -1,37 +1,58 @@
-# share_app
-This is a Node.js script that creates a file sharing application with password protection functionality. Here's a step-by-step explanation:
+# Safe Share
 
-Required modules are imported:
+Safe Share is a file sharing application that allows you to securely upload and share files with others. It provides password protection for uploaded files, ensuring that only authorized users can access and download the files.
 
-multer is used for file uploads.
-mongoose is used to interact with a MongoDB database.
-express is used for creating the web application.
-crypto is used for encryption and decryption of the password.
-The File model is imported from a separate file to handle database operations.
-The application connects to a MongoDB database running locally at mongodb://127.0.0.1/fileShare.
+**Features**
+- Upload files securely and easily.
+- Password protect files for added security.
+- Share file download links with others.
+- Track the number of downloads for each file.
 
-The upload middleware is set up using multer to store uploaded files in the "uploads" directory.
+**Technologies Used**
+- Node.js
+- Express.js
+- MongoDB
+- Multer (for file uploads)
+- EJS (Embedded JavaScript templates) for views
+- Crypto (for encryption and decryption)
 
-The Express application is set up to use the EJS template engine and to accept URL-encoded data.
+**Installation**
 
-A GET route is created for the home page ("/") which will render the "index" template.
+- Clone the repository:
+  `git clone https://github.com/Vish1504/safe-share.git`
 
-A POST route is created for the file upload endpoint ("/upload"). The uploaded file is processed and the following data is stored in the fileData object:
+- Install the dependencies:
+  `npm install`
 
-The path of the file on the server
-The original name of the file
-If a password is provided, it is encrypted using AES-256-CBC encryption with a randomly generated salt and initialization vector (IV). The encrypted password, along with the salt and IV, is stored in the database as a single string separated by colons.
+- Configure the application:
+  - Rename the .env.example file to .env.
+  - Update the values in the .env file according to your environment and preferences.
 
-The encrypted fileData is saved to the database using the File model. The file's unique ID is then used to generate a link to download the file, which is passed to the "index" template for display to the user.
+- Start the application:
+  - `npm start`
+  - Open your browser and access the application at http://localhost:8080.
 
-A combined GET and POST route is created for file downloads ("/file/:id"). The file is retrieved from the database using its ID.
+**Usage**
+- Upload a file:
+  - Visit the home page of the application.
+  - Choose a file from your system using the "Choose an image to upload" button.
+  - Enter a password to secure the file.
+  - Click the "Upload File" button.
 
-If the file has a password, the user is prompted to enter it. If no password is provided, the download is automatically initiated.
+- Share the file:
+  - After the file is uploaded, you will see the file download link.
+  - Copy the link and share it with the intended recipients.
 
-If the file has a password, it is decrypted and checked against the provided password. If the password is incorrect, the user is prompted to enter it again.
+- Download a file:
+  - Open the file download link in a browser.
+  - Enter the password.
+  - Click the "Download" button.
+  - The file will be downloaded to your system.
 
-If the password is correct, the download count for the file is incremented and the file is saved to the database.
+**File Encryption**
 
-The file is then sent to the user for download using the res.download() method.
+The encryption process ensures that the file remains secure and can only be accessed by authorized users who have the correct password.
 
-The Express application is set to listen on port 8080.
+**Contributing**
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please create an issue or submit a pull request.
